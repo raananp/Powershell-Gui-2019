@@ -8,7 +8,7 @@ Add-Type -AssemblyName System.Windows.Forms
 
 $MainForm                             = New-Object system.Windows.Forms.Form
 $MainForm.ClientSize                  = '600,300'
-$MainForm.text                        = "Liveperson IT Automation Tasks"
+$MainForm.text                        = "IT Automation Tasks"
 $MainForm.TopMost                     = $false
 $MainForm.BackColor                   = "#f2efef"
 $MainForm.AutoScale                   = $false
