@@ -72,7 +72,7 @@ $MainFormPanel1.BackColor             = "#f0f4f4"
 
 $MainFormIntroductionExplain
 $MainFormIntroductionExplain          = New-Object system.Windows.Forms.Label
-$MainFormIntroductionExplainText      = "Liveperson IT Automation Task
+$MainFormIntroductionExplainText      = "IT Automation Task
 `n`nThis software allows you to perform 
 multiple operations against different systems 
 from one place.
