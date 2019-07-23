@@ -66,12 +66,19 @@ $MainFormPanel1.BackColor             = "#f0f4f4"
 $MainFormIntroductionExplain
 $MainFormIntroductionExplain          = New-Object system.Windows.Forms.Label
 $MainFormIntroductionExplainText      = "My IT Automation Task
-`n`nThis software allows you to perform 
-multiple operations against different systems 
+`n`nThis software allows you to perform multiple operations against different systems 
 from one place.
+
+User actions let you perform :
+ * offboardin process 
+ * Onboarding a new user (Partner\Contractor\Service Account)
+
+Asset action Lets you delete a station from : 
+ * Sccm
+ * JAMF
+ * Active Directory 
 `n`n`n`nWarning : 
-Some of the actions are irreversible
-And must be performed with extreme caution!."
+Some of the actions are irreversible And must be performed with extreme caution!."
 $MainFormIntroductionExplain.text     = $MainFormIntroductionExplainText 
 $MainFormIntroductionExplain.AutoSize = $true
 $MainFormIntroductionExplain.width    = 25
@@ -352,7 +359,7 @@ Function OnBoarding-SubMenu{
     $MainFormProgressbar.Increment(+20)
     $MainFormProgressbar.text ="Loading"    
     $global:OnBoardingTitle                = New-Object system.Windows.Forms.label
-    $OnBoardingTitle.text                   = "                          OnBoarding process"
+    $OnBoardingTitle.text                   = "                                OnBoarding process"
     $OnBoardingTitle.AutoSize               = $true
     $OnBoardingTitle.width                  = 25
     $OnBoardingTitle.height                 = 10
@@ -360,18 +367,18 @@ Function OnBoarding-SubMenu{
     $OnBoardingTitle.Font                   = 'Microsoft Sans Serif,10,style=bold,Underline'
 
     $global:OnBoardinglabelEnterUserFirstName                = New-Object system.Windows.Forms.label
-    $OnBoardinglabelEnterUserFirstName.text                   = "Enter User First Name : "
+    $OnBoardinglabelEnterUserFirstName.text                   = "User First Name : "
     $OnBoardinglabelEnterUserFirstName.AutoSize               = $true
-    $OnBoardinglabelEnterUserFirstName.width                  = 25
+    $OnBoardinglabelEnterUserFirstName.width                  = 40
     $OnBoardinglabelEnterUserFirstName.height                 = 10
     $OnBoardinglabelEnterUserFirstName.location               = New-Object System.Drawing.Point(5,45)
-    $OnBoardinglabelEnterUserFirstName.Font                   = 'Microsoft Sans Serif,8,style=Underline'
+    $OnBoardinglabelEnterUserFirstName.Font                   = 'Microsoft Sans Serif,8'
 
     $global:OnBoardinglabelEnterUserFirstNameTextBox                    = New-Object system.Windows.Forms.TextBox
-    $OnBoardinglabelEnterUserFirstNameTextBox.text                      = "FirstName"
+    $OnBoardinglabelEnterUserFirstNameTextBox.text                      = ""
     $OnBoardinglabelEnterUserFirstNameTextBox.width                     = 100
     $OnBoardinglabelEnterUserFirstNameTextBox.height                    = 10
-    $OnBoardinglabelEnterUserFirstNameTextBox.location                  = New-Object System.Drawing.Point(160,40)
+    $OnBoardinglabelEnterUserFirstNameTextBox.location                  = New-Object System.Drawing.Point(5,65)
     $OnBoardinglabelEnterUserFirstNameTextBox.Font                      = 'Microsoft Sans Serif,10'
 
     $global:OnBoardinglabelEnterUserNameValidate                 = New-Object system.Windows.Forms.label
@@ -379,22 +386,22 @@ Function OnBoarding-SubMenu{
     $OnBoardinglabelEnterUserNameValidate.AutoSize               = $true
     $OnBoardinglabelEnterUserNameValidate.width                  = 25
     $OnBoardinglabelEnterUserNameValidate.height                 = 10
-    $OnBoardinglabelEnterUserNameValidate.location               = New-Object System.Drawing.Point(270,125)
+    $OnBoardinglabelEnterUserNameValidate.location               = New-Object System.Drawing.Point(110,175)
     $OnBoardinglabelEnterUserNameValidate.Font                   = 'Microsoft Sans Serif,8'
     
     $global:OnBoardinglabelEnterUserLastName                = New-Object system.Windows.Forms.label
-    $OnBoardinglabelEnterUserLastName.text                   = "Enter User Last Name : "
+    $OnBoardinglabelEnterUserLastName.text                   = "User Last Name :"
     $OnBoardinglabelEnterUserLastName.AutoSize               = $true
     $OnBoardinglabelEnterUserLastName.width                  = 25
     $OnBoardinglabelEnterUserLastName.height                 = 10
-    $OnBoardinglabelEnterUserLastName.location               = New-Object System.Drawing.Point(5,85)
-    $OnBoardinglabelEnterUserLastName.Font                   = 'Microsoft Sans Serif,8,style=Underline'
+    $OnBoardinglabelEnterUserLastName.location               = New-Object System.Drawing.Point(5,100)
+    $OnBoardinglabelEnterUserLastName.Font                   = 'Microsoft Sans Serif,8'
 
     $global:OnBoardinglabelEnterUserLastNameTextBox                    = New-Object system.Windows.Forms.TextBox
-    $OnBoardinglabelEnterUserLastNameTextBox.text                      = "LastName"
+    $OnBoardinglabelEnterUserLastNameTextBox.text                      = ""
     $OnBoardinglabelEnterUserLastNameTextBox.width                     = 100
     $OnBoardinglabelEnterUserLastNameTextBox.height                    = 10
-    $OnBoardinglabelEnterUserLastNameTextBox.location                  = New-Object System.Drawing.Point(160,80)
+    $OnBoardinglabelEnterUserLastNameTextBox.location                  = New-Object System.Drawing.Point(5,120)
     $OnBoardinglabelEnterUserLastNameTextBox.Font                      = 'Microsoft Sans Serif,10'   
     
     $global:OnBoardinglabelEnterUserName                = New-Object system.Windows.Forms.label
@@ -402,85 +409,139 @@ Function OnBoarding-SubMenu{
     $OnBoardinglabelEnterUserName.AutoSize               = $true
     $OnBoardinglabelEnterUserName.width                  = 25
     $OnBoardinglabelEnterUserName.height                 = 10
-    $OnBoardinglabelEnterUserName.location               = New-Object System.Drawing.Point(5,125)
-    $OnBoardinglabelEnterUserName.Font                   = 'Microsoft Sans Serif,8,style=Underline'
+    $OnBoardinglabelEnterUserName.location               = New-Object System.Drawing.Point(5,150)
+    $OnBoardinglabelEnterUserName.Font                   = 'Microsoft Sans Serif,8'
 
     $global:OnBoardinglabelEnterUserNameTextBox                    = New-Object system.Windows.Forms.TextBox
-    $OnBoardinglabelEnterUserNameTextBox.text                      = "UserName"
+    $OnBoardinglabelEnterUserNameTextBox.text                      = ""
     $OnBoardinglabelEnterUserNameTextBox.width                     = 100
     $OnBoardinglabelEnterUserNameTextBox.height                    = 10
-    $OnBoardinglabelEnterUserNameTextBox.location                  = New-Object System.Drawing.Point(160,120)
+    $OnBoardinglabelEnterUserNameTextBox.location                  = New-Object System.Drawing.Point(5,170)
     $OnBoardinglabelEnterUserNameTextBox.Font                      = 'Microsoft Sans Serif,10'  
     
     $global:OnBoardinglabelEnterDescriptionTitle                = New-Object system.Windows.Forms.label
-    $OnBoardinglabelEnterDescriptionTitle.text                   = "Enter Description/Title : "
+    $OnBoardinglabelEnterDescriptionTitle.text                   = "Description/Title : "
     $OnBoardinglabelEnterDescriptionTitle.AutoSize               = $true
     $OnBoardinglabelEnterDescriptionTitle.width                  = 25
     $OnBoardinglabelEnterDescriptionTitle.height                 = 10
-    $OnBoardinglabelEnterDescriptionTitle.location               = New-Object System.Drawing.Point(5,165)
-    $OnBoardinglabelEnterDescriptionTitle.Font                   = 'Microsoft Sans Serif,8,style=Underline'
+    $OnBoardinglabelEnterDescriptionTitle.location               = New-Object System.Drawing.Point(5,200)
+    $OnBoardinglabelEnterDescriptionTitle.Font                   = 'Microsoft Sans Serif,8'
 
     $global:OnBoardinglabelEnterDescriptionTitleTextBox                    = New-Object system.Windows.Forms.TextBox
-    $OnBoardinglabelEnterDescriptionTitleTextBox.text                      = "Description/Title"
-    $OnBoardinglabelEnterDescriptionTitleTextBox.width                     = 120
+    $OnBoardinglabelEnterDescriptionTitleTextBox.text                      = ""
+    $OnBoardinglabelEnterDescriptionTitleTextBox.width                     = 100
     $OnBoardinglabelEnterDescriptionTitleTextBox.height                    = 5
-    $OnBoardinglabelEnterDescriptionTitleTextBox.location                  = New-Object System.Drawing.Point(160,160)
+    $OnBoardinglabelEnterDescriptionTitleTextBox.location                  = New-Object System.Drawing.Point(5,220)
     $OnBoardinglabelEnterDescriptionTitleTextBox.Font                      = 'Microsoft Sans Serif,10'  
     
     $global:OnBoardinglabelEnterManagerUserNameTitle                = New-Object system.Windows.Forms.label
-    $OnBoardinglabelEnterManagerUserNameTitle.text                   = "Enter ManagerUser Name : "
+    $OnBoardinglabelEnterManagerUserNameTitle.text                   = "ManagerUser Name : "
     $OnBoardinglabelEnterManagerUserNameTitle.AutoSize               = $true
     $OnBoardinglabelEnterManagerUserNameTitle.width                  = 25
     $OnBoardinglabelEnterManagerUserNameTitle.height                 = 10
-    $OnBoardinglabelEnterManagerUserNameTitle.location               = New-Object System.Drawing.Point(5,205)
-    $OnBoardinglabelEnterManagerUserNameTitle.Font                   = 'Microsoft Sans Serif,8,style=Underline'
+    $OnBoardinglabelEnterManagerUserNameTitle.location               = New-Object System.Drawing.Point(5,250)
+    $OnBoardinglabelEnterManagerUserNameTitle.Font                   = 'Microsoft Sans Serif,8'
 
     $global:OnBoardinglabelEnterManagerUserNameTextBox                    = New-Object system.Windows.Forms.TextBox
-    $OnBoardinglabelEnterManagerUserNameTextBox.text                      = "ManagerUserName"
-    $OnBoardinglabelEnterManagerUserNameTextBox.width                     = 140
+    $OnBoardinglabelEnterManagerUserNameTextBox.text                      = ""
+    $OnBoardinglabelEnterManagerUserNameTextBox.width                     = 100
     $OnBoardinglabelEnterManagerUserNameTextBox.height                    = 5
-    $OnBoardinglabelEnterManagerUserNameTextBox.location                  = New-Object System.Drawing.Point(160,200)
+    $OnBoardinglabelEnterManagerUserNameTextBox.location                  = New-Object System.Drawing.Point(5,270)
     $OnBoardinglabelEnterManagerUserNameTextBox.Font                      = 'Microsoft Sans Serif,10' 
     
     $global:OnBoardinglabelEnterTelephoneNumberTitle                = New-Object system.Windows.Forms.label
-    $OnBoardinglabelEnterTelephoneNumberTitle.text                   = "Enter Telephone Number : "
+    $OnBoardinglabelEnterTelephoneNumberTitle.text                   = "Telephone Number : "
     $OnBoardinglabelEnterTelephoneNumberTitle.AutoSize               = $true
     $OnBoardinglabelEnterTelephoneNumberTitle.width                  = 25
     $OnBoardinglabelEnterTelephoneNumberTitle.height                 = 10
-    $OnBoardinglabelEnterTelephoneNumberTitle.location               = New-Object System.Drawing.Point(5,245)
-    $OnBoardinglabelEnterTelephoneNumberTitle.Font                   = 'Microsoft Sans Serif,8,style=Underline'
+    $OnBoardinglabelEnterTelephoneNumberTitle.location               = New-Object System.Drawing.Point(120,45)
+    $OnBoardinglabelEnterTelephoneNumberTitle.Font                   = 'Microsoft Sans Serif,8'
 
     $global:OnBoardinglabelEnterTelephoneNumberTitleTextBox                    = New-Object system.Windows.Forms.TextBox
-    $OnBoardinglabelEnterTelephoneNumberTitleTextBox.text                      = "TelephoneNumber"
-    $OnBoardinglabelEnterTelephoneNumberTitleTextBox.width                     = 140
+    $OnBoardinglabelEnterTelephoneNumberTitleTextBox.text                      = ""
+    $OnBoardinglabelEnterTelephoneNumberTitleTextBox.width                     = 100
     $OnBoardinglabelEnterTelephoneNumberTitleTextBox.height                    = 5
-    $OnBoardinglabelEnterTelephoneNumberTitleTextBox.location                  = New-Object System.Drawing.Point(160,240)
+    $OnBoardinglabelEnterTelephoneNumberTitleTextBox.location                  = New-Object System.Drawing.Point(120,65)
     $OnBoardinglabelEnterTelephoneNumberTitleTextBox.Font                      = 'Microsoft Sans Serif,10'
     
     $global:OnBoardinglabelEnterMobilephoneNumberTitle                = New-Object system.Windows.Forms.label
-    $OnBoardinglabelEnterMobilephoneNumberTitle.text                   = "Enter Mobile phone Number : "
+    $OnBoardinglabelEnterMobilephoneNumberTitle.text                   = "Mobile phone Number : "
     $OnBoardinglabelEnterMobilephoneNumberTitle.AutoSize               = $true
     $OnBoardinglabelEnterMobilephoneNumberTitle.width                  = 25
     $OnBoardinglabelEnterMobilephoneNumberTitle.height                 = 10
-    $OnBoardinglabelEnterMobilephoneNumberTitle.location               = New-Object System.Drawing.Point(5,285)
-    $OnBoardinglabelEnterMobilephoneNumberTitle.Font                   = 'Microsoft Sans Serif,8,style=Underline'
+    $OnBoardinglabelEnterMobilephoneNumberTitle.location               = New-Object System.Drawing.Point(120,100)
+    $OnBoardinglabelEnterMobilephoneNumberTitle.Font                   = 'Microsoft Sans Serif,8'
 
     $global:OnBoardinglabelEnterMobilephoneNumberTitleTextBox          = New-Object system.Windows.Forms.TextBox
-    $OnBoardinglabelEnterMobilephoneNumberTitleTextBox.text                      = "MobilephoneNumber"
-    $OnBoardinglabelEnterMobilephoneNumberTitleTextBox.width                     = 140
+    $OnBoardinglabelEnterMobilephoneNumberTitleTextBox.text                      = ""
+    $OnBoardinglabelEnterMobilephoneNumberTitleTextBox.width                     = 100
     $OnBoardinglabelEnterMobilephoneNumberTitleTextBox.height                    = 5
-    $OnBoardinglabelEnterMobilephoneNumberTitleTextBox.location                  = New-Object System.Drawing.Point(160,280)
-    $OnBoardinglabelEnterMobilephoneNumberTitleTextBox.Font                      = 'Microsoft Sans Serif,10'     
-             
-    $MainFormProgressbar.Increment(+80)
-    $MainFormPanel1.controls.AddRange(@($OnBoardingTitle,$OnBoardinglabelEnterUserFirstName,$OnBoardinglabelEnterUserFirstNameTextBox,$OnBoardinglabelEnterUserLastName,$OnBoardinglabelEnterUserLastNameTextBox,$OnBoardinglabelEnterUserName,$OnBoardinglabelEnterUserNameTextBox,$OnBoardinglabelEnterDescriptionTitle,$OnBoardinglabelEnterDescriptionTitleTextBox,$OnBoardinglabelEnterManagerUserNameTitle,$OnBoardinglabelEnterManagerUserNameTextBox,$OnBoardinglabelEnterTelephoneNumberTitle,$OnBoardinglabelEnterTelephoneNumberTitleTextBox,$OnBoardinglabelEnterMobilephoneNumberTitle,$OnBoardinglabelEnterMobilephoneNumberTitleTextBox,$OnBoardinglabelEnterUserNameValidate)) 
+    $OnBoardinglabelEnterMobilephoneNumberTitleTextBox.location                  = New-Object System.Drawing.Point(120,120)
+    $OnBoardinglabelEnterMobilephoneNumberTitleTextBox.Font                      = 'Microsoft Sans Serif,10'    
+    
+    #$OnBoardingOUComboBoxTitle.text ="Choose OU"    
+    $global:OnBoardingOUComboBoxTitle                 = New-Object system.Windows.Forms.label
+    $OnBoardingOUComboBoxTitle.text                   = "Choose OU"
+    $OnBoardingOUComboBoxTitle.AutoSize               = $true
+    $OnBoardingOUComboBoxTitle.width                  = 25
+    $OnBoardingOUComboBoxTitle.height                 = 10
+    $OnBoardingOUComboBoxTitle.location               = New-Object System.Drawing.Point(250,45)
+    $OnBoardingOUComboBoxTitle.Font                   = 'Microsoft Sans Serif,8'
 
+    $global:OnBoardingOUComboBox                    = New-Object system.Windows.Forms.ComboBox
+    $OnBoardingOUComboBox.text                      = ""
+    $OnBoardingOUComboBox.width                     = 160
+    $OnBoardingOUComboBox.height                    = 20
+    $OnBoardingOUComboBox.location                  = New-Object System.Drawing.Point(250,65)
+    $OnBoardingOUComboBox.Font                      = 'Microsoft Sans Serif,10'   
+    $global:OU = Get-ADOrganizationalUnit -filter * | where {$_.DistinguishedName -like "*OU=LivePerson - Partners,DC=lpnet,DC=com*" -or $_.DistinguishedName -like "*OU=LivePerson - Temps - Contractors,DC=lpnet,DC=com*"}  | sort -Descending
+    
+    foreach ($o in $OU){Write-Host $o.name;$OnBoardingOUComboBox.Items.Add(($($o.name))) }
+
+    $global:OnBoardingADGroupsTitle                 = New-Object system.Windows.Forms.label
+    $OnBoardingADGroupsTitle.text                   = "Choose Primary AD Group"
+    $OnBoardingADGroupsTitle.AutoSize               = $true
+    $OnBoardingADGroupsTitle.width                  = 25
+    $OnBoardingADGroupsTitle.height                 = 10
+    $OnBoardingADGroupsTitle.location               = New-Object System.Drawing.Point(250,100)
+    $OnBoardingADGroupsTitle.Font                   = 'Microsoft Sans Serif,8'
+
+    $global:OnBoardingADGroupsComboBox                    = New-Object system.Windows.Forms.ComboBox
+    $OnBoardingADGroupsComboBox.text                      = ""
+    $OnBoardingADGroupsComboBox.width                     = 160
+    $OnBoardingADGroupsComboBox.height                    = 20
+    $OnBoardingADGroupsComboBox.location                  = New-Object System.Drawing.Point(250,120)
+    $OnBoardingADGroupsComboBox.Font                      = 'Microsoft Sans Serif,10' 
+    $global:ADGroups = (get-adgroup -Filter * | where {$_.DistinguishedName -like "*OU=LivePerson - Partners,DC=lpnet,DC=com*" -or $_.DistinguishedName -like "*OU=LivePerson - Temps - Contractors,DC=lpnet,DC=com*"}).name | sort -Descending
+    foreach ($ADGrop in $ADGroups){$OnBoardingADGroupsComboBox.Items.Add(($($ADGrop)))}
+    
+
+    $global:OnBoardingEmployeeTitle                 = New-Object system.Windows.Forms.label
+    $OnBoardingEmployeeTitle.text                   = "Choose Employee Type"
+    $OnBoardingEmployeeTitle.AutoSize               = $true
+    $OnBoardingEmployeeTitle.width                  = 25
+    $OnBoardingEmployeeTitle.height                 = 10
+    $OnBoardingEmployeeTitle.location               = New-Object System.Drawing.Point(250,150)
+    $OnBoardingEmployeeTitle.Font                   = 'Microsoft Sans Serif,8'
+
+    $global:OnBoardingEmployeeComboBox                    = New-Object system.Windows.Forms.ComboBox
+    $OnBoardingEmployeeComboBox.text                      = ""
+    $OnBoardingEmployeeComboBox.width                     = 100
+    $OnBoardingEmployeeComboBox.height                    = 20
+    $OnBoardingEmployeeComboBox.location                  = New-Object System.Drawing.Point(250,170)
+    $OnBoardingEmployeeComboBox.Font                      = 'Microsoft Sans Serif,10' 
+    $EmployeeType="Partner" ,"Contractor", "ServiceAccount";foreach ($e in $EmployeeType){ $OnBoardingEmployeeComboBox.Items.Add(($($e)))}
+
+
+    $MainFormProgressbar.Increment(+80)
+    $MainFormPanel1.controls.AddRange(@($OnBoardingTitle,$OnBoardinglabelEnterUserFirstName,$OnBoardinglabelEnterUserFirstNameTextBox,$OnBoardinglabelEnterUserLastName,$OnBoardinglabelEnterUserLastNameTextBox,$OnBoardinglabelEnterUserName,$OnBoardinglabelEnterUserNameTextBox,$OnBoardinglabelEnterDescriptionTitle,$OnBoardinglabelEnterDescriptionTitleTextBox,$OnBoardinglabelEnterManagerUserNameTitle,$OnBoardinglabelEnterManagerUserNameTextBox,$OnBoardinglabelEnterTelephoneNumberTitle,$OnBoardinglabelEnterTelephoneNumberTitleTextBox,$OnBoardinglabelEnterMobilephoneNumberTitle,$OnBoardinglabelEnterMobilephoneNumberTitleTextBox,$OnBoardinglabelEnterUserNameValidate,$OnBoardingOUComboBoxTitle,$OnBoardingOUComboBox,$OnBoardingADGroupsTitle,$OnBoardingADGroupsComboBox,$OnBoardingEmployeeTitle,$OnBoardingEmployeeComboBox)) 
+    
     $OnBoardinglabelEnterUserNameValidate.Add_MouseHover({ $MainForm.Cursor="Hand" })
     $OnBoardinglabelEnterUserNameValidate.Add_MouseLeave({ $MainForm.Cursor="Default" })
     $OnBoardinglabelEnterUserNameValidate.Add_Click({ OnBoarding-UserNameValidate })
     $OnBoardinglabelEnterUserNameTextBox.Add_TextChanged({ $OnBoardinglabelEnterUserNameValidate.text  = "Validate";$OnBoardinglabelEnterUserNameValidate.ForeColor  = "#646da9" })
-    $OnBoardinglabelEnterUserFirstNameTextBox.Add_Leave({ Write-Host "Leav" ;$OnBoardinglabelEnterUserNameTextBox.text =$($OnBoardinglabelEnterUserFirstNameTextBox.text[0]) + $($OnBoardinglabelEnterUserLastNameTextBox.text)})
-    $OnBoardinglabelEnterUserLastNameTextBox.Add_Leave({ Write-Host "Leav" ;$OnBoardinglabelEnterUserNameTextBox.text =$($OnBoardinglabelEnterUserFirstNameTextBox.text[0]) + $($OnBoardinglabelEnterUserLastNameTextBox.text)})
+    $OnBoardinglabelEnterUserFirstNameTextBox.Add_TextChanged({ Write-Host "Leave" ;$OnBoardinglabelEnterUserNameTextBox.text =$($OnBoardinglabelEnterUserFirstNameTextBox.text[0]) + $($OnBoardinglabelEnterUserLastNameTextBox.text)})
+    $OnBoardinglabelEnterUserLastNameTextBox.Add_TextChanged({ Write-Host "Leave" ;$OnBoardinglabelEnterUserNameTextBox.text =$($OnBoardinglabelEnterUserFirstNameTextBox.text[0]) + $($OnBoardinglabelEnterUserLastNameTextBox.text)})
 }
 
 Function OnBoarding-UserNameValidate{
@@ -502,12 +563,12 @@ $OnBoardinglabelEnterUserNameValidate.ForeColor  = "#646da9";$OnBoardinglabelEnt
             if ($AdUser = Get-ADUser -Filter {SamAccountName -like $UserNAme})
                 {
                     Write-Host "Validation Faild Found In AD" $AdUser.name
-                    $OnBoardinglabelEnterUserNameValidate.ForeColor  = "#ed1f37";$OnBoardinglabelEnterUserNameValidate.text  = "Validation Faild Found $($AdUser.name) In AD"
+                    $OnBoardinglabelEnterUserNameValidate.ForeColor  = "#ed1f37";$OnBoardinglabelEnterUserNameValidate.text  = "Validation Faild Found `n$($AdUser.name) In AD"
                 }
             else
                 {
                     Write-Host "Validation passed - " $UserNAme " Not In AD"
-                    $OnBoardinglabelEnterUserNameValidate.ForeColor  = "#646da9";$OnBoardinglabelEnterUserNameValidate.text  = "Validation passed -  $UserNAme  Not In AD"
+                    $OnBoardinglabelEnterUserNameValidate.ForeColor  = "#646da9";$OnBoardinglabelEnterUserNameValidate.text  = "Validation passed  `n$UserNAme  Not In AD"
                 }
         }
 
@@ -599,3 +660,6 @@ remove-Variable -Name DeleteComputer*
 remove-Variable -Name MainForm*
 remove-Variable -Name Offboarding*
 remove-Variable -Name OnBoarding*
+
+#Are you sure you want to delete Install macOS Sierra.dmg?
+#This action is permanent and cannot be undone.

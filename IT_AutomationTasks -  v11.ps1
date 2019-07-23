@@ -161,11 +161,13 @@ Function Create-Button{
         {
             "Introduction"{Clean-FormButton}
             "UserAction"{Clean-FormButton
+                
+
                 $global:OffboardingButton                  = New-Object system.Windows.Forms.RadioButton
                 $OffboardingButton.text                    = "User Offboarding"
                 $OffboardingButton.width                   = 200
                 $OffboardingButton.height                  = 20
-                $OffboardingButton.location                = New-Object System.Drawing.Point(5,10)
+                $OffboardingButton.location                = New-Object System.Drawing.Point(5,40)
                 $OffboardingButton.Font                    = 'Microsoft Sans Serif,10'   
                 
                 $global:OffboardingButtonInfo                        = New-Object system.Windows.Forms.label
@@ -173,22 +175,22 @@ Function Create-Button{
                 $OffboardingButtonInfo.AutoSize               = $true
                 $OffboardingButtonInfo.width                  = 25
                 $OffboardingButtonInfo.height                 = 10
-                $OffboardingButtonInfo.location               = New-Object System.Drawing.Point(5,40)
+                $OffboardingButtonInfo.location               = New-Object System.Drawing.Point(5,70)
                 $OffboardingButtonInfo.Font                   = 'Microsoft Sans Serif,8'  
                 
                 $globaL:OnBoardingButton                  = New-Object system.Windows.Forms.RadioButton
                 $OnBoardingButton.text                    = "User OnBoarding"
                 $OnBoardingButton.width                   = 200
                 $OnBoardingButton.height                  = 20
-                $OnBoardingButton.location                = New-Object System.Drawing.Point(5,100)
+                $OnBoardingButton.location                = New-Object System.Drawing.Point(5,140)
                 $OnBoardingButton.Font                    = 'Microsoft Sans Serif,10'
 
                 $global:OnBoardingButtonInfo                        = New-Object system.Windows.Forms.label
-                $OnBoardingButtonInfo.text                   = "     This action will delete the user from all organizational systems`n     Including access to his PC, once submitted this action is irreversible,`n     Use with precaution"
+                $OnBoardingButtonInfo.text                   = "     This action will create ""Partner\Contractor\Service Account"" user in Active Directory. "
                 $OnBoardingButtonInfo.AutoSize               = $true
                 $OnBoardingButtonInfo.width                  = 25
                 $OnBoardingButtonInfo.height                 = 10
-                $OnBoardingButtonInfo.location               = New-Object System.Drawing.Point(5,130)
+                $OnBoardingButtonInfo.location               = New-Object System.Drawing.Point(5,170)
                 $OnBoardingButtonInfo.Font                   = 'Microsoft Sans Serif,8'
 
                 $OffboardingButton.Add_Click({ Write-Host "OffboardingButton clicked" ;$SubMenu="Offboarding";User-CreateSubMenu;}) 
@@ -197,7 +199,7 @@ Function Create-Button{
 
                 $MainFormPanel1.controls.AddRange(@($OffboardingButton,$OnBoardingButton,$OffboardingButtonInfo,$OnBoardingButtonInfo))
               }
-            "AssetsAction"{Clean-FormButton
+            "AssetsAction"{Clean-FormButton                
                 $global:DeleteMACFromJAMFButton                  = New-Object system.Windows.Forms.RadioButton
                 $DeleteMACFromJAMFButton.text                    = "Delete MAC From JAMF"
                 $DeleteMACFromJAMFButton.width                   = 200
@@ -257,9 +259,9 @@ Function Create-Button{
 Function Clean-FormButton{
     switch ($ClickOn)
         {
-            "Introduction" {if ($OffboardingButton){$OffboardingButton.Dispose()};if ($OnBoardingButton){$OnBoardingButton.Dispose()};if ($DeleteMACFromJAMFButton){$DeleteMACFromJAMFButton.Dispose()};if ($DeleteComputerObjectFromADButton){$DeleteComputerObjectFromADButton.Dispose()};if ($DeleteComputerFromSCCMButton){$DeleteComputerFromSCCMButton.Dispose()};if ($OffboardingButtonInfo){$OffboardingButtonInfo.Dispose()};if ($OnBoardingButtonInfo){$OnBoardingButtonInfo.Dispose()};if ($DeleteMACFromJAMFButtonInfo){$DeleteMACFromJAMFButtonInfo.Dispose()};if ($DeleteComputerObjectFromADButtonInfo){$DeleteComputerObjectFromADButtonInfo.Dispose()};if ($DeleteComputerFromSCCMButtonInfo){$DeleteComputerFromSCCMButtonInfo.Dispose()};if ($OffboardingComboBox){$OffboardingComboBox.Dispose()};if ($OffboardingComboBoxTitle){$OffboardingComboBoxTitle.Dispose()};if ($MainFormProgressbar){$MainFormProgressbar.Dispose()};Clean-SubMenuButton}
-            "UserAction"   {if ($DeleteMACFromJAMFButton){$DeleteMACFromJAMFButton.Dispose()};if ($DeleteComputerObjectFromADButton){$DeleteComputerObjectFromADButton.Dispose()};if ($DeleteComputerFromSCCMButton){$DeleteComputerFromSCCMButton.Dispose()};if ($DeleteMACFromJAMFButtonInfo){$DeleteMACFromJAMFButtonInfo.Dispose()};if ($DeleteComputerObjectFromADButtonInfo){$DeleteComputerObjectFromADButtonInfo.Dispose()};if ($DeleteComputerFromSCCMButtonInfo){$DeleteComputerFromSCCMButtonInfo.Dispose()};if ($OffboardingComboBox){$OffboardingComboBox.Dispose()};if ($OffboardingComboBoxTitle){$OffboardingComboBoxTitle.Dispose()};Clean-SubMenuButton}
-            "AssetsAction" {if ($OffboardingButton){$OffboardingButton.Dispose()};if ($OnBoardingButton){$OnBoardingButton.Dispose()};if ($OffboardingButtonInfo){$OffboardingButtonInfo.Dispose()};if ($OnBoardingButtonInfo){$OnBoardingButtonInfo.Dispose()};if ($OffboardingComboBox){$OffboardingComboBox.Dispose()};if ($OffboardingComboBoxTitle){$OffboardingComboBoxTitle.Dispose()};Clean-SubMenuButton}
+            "Introduction" {if ($OffboardingTitle){$OffboardingTitle.Dispose()};if ($OffboardingButton){$OffboardingButton.Dispose()};if ($OnBoardingButton){$OnBoardingButton.Dispose()};if ($DeleteMACFromJAMFButton){$DeleteMACFromJAMFButton.Dispose()};if ($DeleteComputerObjectFromADButton){$DeleteComputerObjectFromADButton.Dispose()};if ($DeleteComputerFromSCCMButton){$DeleteComputerFromSCCMButton.Dispose()};if ($OffboardingButtonInfo){$OffboardingButtonInfo.Dispose()};if ($OnBoardingButtonInfo){$OnBoardingButtonInfo.Dispose()};if ($DeleteMACFromJAMFButtonInfo){$DeleteMACFromJAMFButtonInfo.Dispose()};if ($DeleteComputerObjectFromADButtonInfo){$DeleteComputerObjectFromADButtonInfo.Dispose()};if ($DeleteComputerFromSCCMButtonInfo){$DeleteComputerFromSCCMButtonInfo.Dispose()};if ($OffboardingComboBox){$OffboardingComboBox.Dispose()};if ($OffboardingComboBoxTitle){$OffboardingComboBoxTitle.Dispose()};if ($MainFormProgressbar){$MainFormProgressbar.Dispose()};Clean-SubMenuButton}
+            "UserAction"   {if ($OffboardingTitle){$OffboardingTitle.Dispose()};if ($DeleteMACFromJAMFButton){$DeleteMACFromJAMFButton.Dispose()};if ($DeleteComputerObjectFromADButton){$DeleteComputerObjectFromADButton.Dispose()};if ($DeleteComputerFromSCCMButton){$DeleteComputerFromSCCMButton.Dispose()};if ($DeleteMACFromJAMFButtonInfo){$DeleteMACFromJAMFButtonInfo.Dispose()};if ($DeleteComputerObjectFromADButtonInfo){$DeleteComputerObjectFromADButtonInfo.Dispose()};if ($DeleteComputerFromSCCMButtonInfo){$DeleteComputerFromSCCMButtonInfo.Dispose()};if ($OffboardingComboBox){$OffboardingComboBox.Dispose()};if ($OffboardingComboBoxTitle){$OffboardingComboBoxTitle.Dispose()};Clean-SubMenuButton}
+            "AssetsAction" {if ($OffboardingTitle){$OffboardingTitle.Dispose()};if ($OffboardingButton){$OffboardingButton.Dispose()};if ($OnBoardingButton){$OnBoardingButton.Dispose()};if ($OffboardingButtonInfo){$OffboardingButtonInfo.Dispose()};if ($OnBoardingButtonInfo){$OnBoardingButtonInfo.Dispose()};if ($OffboardingComboBox){$OffboardingComboBox.Dispose()};if ($OffboardingComboBoxTitle){$OffboardingComboBoxTitle.Dispose()};Clean-SubMenuButton}
         }
 }
 
@@ -275,6 +277,13 @@ Function Clean-SubMenuButton{
     if ($OnBoardinglabelEnterDescriptionTitleTextBox){$OnBoardinglabelEnterDescriptionTitleTextBox.Dispose()}
     if($OnBoardinglabelEnterManagerUserNameTextBox){$OnBoardinglabelEnterManagerUserNameTextBox.Dispose()}
     if($OnBoardinglabelEnterManagerUserNameTitle){$OnBoardinglabelEnterManagerUserNameTitle.Dispose()}
+    if($OnBoardinglabelEnterTelephoneNumberTitleTextBox){$OnBoardinglabelEnterTelephoneNumberTitleTextBox.Dispose()}
+    if($OnBoardinglabelEnterTelephoneNumberTitle){$OnBoardinglabelEnterTelephoneNumberTitle.Dispose()}
+    if($OnBoardinglabelEnterMobilephoneNumberTitleTextBox){$OnBoardinglabelEnterMobilephoneNumberTitleTextBox.Dispose()}
+    if($OnBoardinglabelEnterMobilephoneNumberTitle){$OnBoardinglabelEnterMobilephoneNumberTitle.Dispose()}
+    if($OnBoardinglabelEnterUserNameValidate){$OnBoardinglabelEnterUserNameValidate.Dispose()}
+
+    
 
 }
 
@@ -362,8 +371,16 @@ Function OnBoarding-SubMenu{
     $OnBoardinglabelEnterUserFirstNameTextBox.text                      = "FirstName"
     $OnBoardinglabelEnterUserFirstNameTextBox.width                     = 100
     $OnBoardinglabelEnterUserFirstNameTextBox.height                    = 10
-    $OnBoardinglabelEnterUserFirstNameTextBox.location                  = New-Object System.Drawing.Point(140,40)
+    $OnBoardinglabelEnterUserFirstNameTextBox.location                  = New-Object System.Drawing.Point(160,40)
     $OnBoardinglabelEnterUserFirstNameTextBox.Font                      = 'Microsoft Sans Serif,10'
+
+    $global:OnBoardinglabelEnterUserNameValidate                 = New-Object system.Windows.Forms.label
+    $OnBoardinglabelEnterUserNameValidate.text                   = "Validate "
+    $OnBoardinglabelEnterUserNameValidate.AutoSize               = $true
+    $OnBoardinglabelEnterUserNameValidate.width                  = 25
+    $OnBoardinglabelEnterUserNameValidate.height                 = 10
+    $OnBoardinglabelEnterUserNameValidate.location               = New-Object System.Drawing.Point(270,125)
+    $OnBoardinglabelEnterUserNameValidate.Font                   = 'Microsoft Sans Serif,8'
     
     $global:OnBoardinglabelEnterUserLastName                = New-Object system.Windows.Forms.label
     $OnBoardinglabelEnterUserLastName.text                   = "Enter User Last Name : "
@@ -377,7 +394,7 @@ Function OnBoarding-SubMenu{
     $OnBoardinglabelEnterUserLastNameTextBox.text                      = "LastName"
     $OnBoardinglabelEnterUserLastNameTextBox.width                     = 100
     $OnBoardinglabelEnterUserLastNameTextBox.height                    = 10
-    $OnBoardinglabelEnterUserLastNameTextBox.location                  = New-Object System.Drawing.Point(140,80)
+    $OnBoardinglabelEnterUserLastNameTextBox.location                  = New-Object System.Drawing.Point(160,80)
     $OnBoardinglabelEnterUserLastNameTextBox.Font                      = 'Microsoft Sans Serif,10'   
     
     $global:OnBoardinglabelEnterUserName                = New-Object system.Windows.Forms.label
@@ -392,7 +409,7 @@ Function OnBoarding-SubMenu{
     $OnBoardinglabelEnterUserNameTextBox.text                      = "UserName"
     $OnBoardinglabelEnterUserNameTextBox.width                     = 100
     $OnBoardinglabelEnterUserNameTextBox.height                    = 10
-    $OnBoardinglabelEnterUserNameTextBox.location                  = New-Object System.Drawing.Point(140,120)
+    $OnBoardinglabelEnterUserNameTextBox.location                  = New-Object System.Drawing.Point(160,120)
     $OnBoardinglabelEnterUserNameTextBox.Font                      = 'Microsoft Sans Serif,10'  
     
     $global:OnBoardinglabelEnterDescriptionTitle                = New-Object system.Windows.Forms.label
@@ -407,7 +424,7 @@ Function OnBoarding-SubMenu{
     $OnBoardinglabelEnterDescriptionTitleTextBox.text                      = "Description/Title"
     $OnBoardinglabelEnterDescriptionTitleTextBox.width                     = 120
     $OnBoardinglabelEnterDescriptionTitleTextBox.height                    = 5
-    $OnBoardinglabelEnterDescriptionTitleTextBox.location                  = New-Object System.Drawing.Point(140,160)
+    $OnBoardinglabelEnterDescriptionTitleTextBox.location                  = New-Object System.Drawing.Point(160,160)
     $OnBoardinglabelEnterDescriptionTitleTextBox.Font                      = 'Microsoft Sans Serif,10'  
     
     $global:OnBoardinglabelEnterManagerUserNameTitle                = New-Object system.Windows.Forms.label
@@ -422,12 +439,51 @@ Function OnBoarding-SubMenu{
     $OnBoardinglabelEnterManagerUserNameTextBox.text                      = "ManagerUserName"
     $OnBoardinglabelEnterManagerUserNameTextBox.width                     = 140
     $OnBoardinglabelEnterManagerUserNameTextBox.height                    = 5
-    $OnBoardinglabelEnterManagerUserNameTextBox.location                  = New-Object System.Drawing.Point(150,200)
-    $OnBoardinglabelEnterManagerUserNameTextBox.Font                      = 'Microsoft Sans Serif,10'      
+    $OnBoardinglabelEnterManagerUserNameTextBox.location                  = New-Object System.Drawing.Point(160,200)
+    $OnBoardinglabelEnterManagerUserNameTextBox.Font                      = 'Microsoft Sans Serif,10' 
+    
+    $global:OnBoardinglabelEnterTelephoneNumberTitle                = New-Object system.Windows.Forms.label
+    $OnBoardinglabelEnterTelephoneNumberTitle.text                   = "Enter Telephone Number : "
+    $OnBoardinglabelEnterTelephoneNumberTitle.AutoSize               = $true
+    $OnBoardinglabelEnterTelephoneNumberTitle.width                  = 25
+    $OnBoardinglabelEnterTelephoneNumberTitle.height                 = 10
+    $OnBoardinglabelEnterTelephoneNumberTitle.location               = New-Object System.Drawing.Point(5,245)
+    $OnBoardinglabelEnterTelephoneNumberTitle.Font                   = 'Microsoft Sans Serif,8,style=Underline'
+
+    $global:OnBoardinglabelEnterTelephoneNumberTitleTextBox                    = New-Object system.Windows.Forms.TextBox
+    $OnBoardinglabelEnterTelephoneNumberTitleTextBox.text                      = "TelephoneNumber"
+    $OnBoardinglabelEnterTelephoneNumberTitleTextBox.width                     = 140
+    $OnBoardinglabelEnterTelephoneNumberTitleTextBox.height                    = 5
+    $OnBoardinglabelEnterTelephoneNumberTitleTextBox.location                  = New-Object System.Drawing.Point(160,240)
+    $OnBoardinglabelEnterTelephoneNumberTitleTextBox.Font                      = 'Microsoft Sans Serif,10'
+    
+    $global:OnBoardinglabelEnterMobilephoneNumberTitle                = New-Object system.Windows.Forms.label
+    $OnBoardinglabelEnterMobilephoneNumberTitle.text                   = "Enter Mobile phone Number : "
+    $OnBoardinglabelEnterMobilephoneNumberTitle.AutoSize               = $true
+    $OnBoardinglabelEnterMobilephoneNumberTitle.width                  = 25
+    $OnBoardinglabelEnterMobilephoneNumberTitle.height                 = 10
+    $OnBoardinglabelEnterMobilephoneNumberTitle.location               = New-Object System.Drawing.Point(5,285)
+    $OnBoardinglabelEnterMobilephoneNumberTitle.Font                   = 'Microsoft Sans Serif,8,style=Underline'
+
+    $global:OnBoardinglabelEnterMobilephoneNumberTitleTextBox                    = New-Object system.Windows.Forms.TextBox
+    $OnBoardinglabelEnterMobilephoneNumberTitleTextBox.text                      = "MobilephoneNumber"
+    $OnBoardinglabelEnterMobilephoneNumberTitleTextBox.width                     = 140
+    $OnBoardinglabelEnterMobilephoneNumberTitleTextBox.height                    = 5
+    $OnBoardinglabelEnterMobilephoneNumberTitleTextBox.location                  = New-Object System.Drawing.Point(160,280)
+    $OnBoardinglabelEnterMobilephoneNumberTitleTextBox.Font                      = 'Microsoft Sans Serif,10'     
              
     $MainFormProgressbar.Increment(+80)
-    $MainFormPanel1.controls.AddRange(@($OnBoardingTitle,$OnBoardinglabelEnterUserFirstName,$OnBoardinglabelEnterUserFirstNameTextBox,$OnBoardinglabelEnterUserLastName,$OnBoardinglabelEnterUserLastNameTextBox,$OnBoardinglabelEnterUserName,$OnBoardinglabelEnterUserNameTextBox,$OnBoardinglabelEnterDescriptionTitle,$OnBoardinglabelEnterDescriptionTitleTextBox,$OnBoardinglabelEnterManagerUserNameTitle,$OnBoardinglabelEnterManagerUserNameTextBox)) 
+    $MainFormPanel1.controls.AddRange(@($OnBoardingTitle,$OnBoardinglabelEnterUserFirstName,$OnBoardinglabelEnterUserFirstNameTextBox,$OnBoardinglabelEnterUserLastName,$OnBoardinglabelEnterUserLastNameTextBox,$OnBoardinglabelEnterUserName,$OnBoardinglabelEnterUserNameTextBox,$OnBoardinglabelEnterDescriptionTitle,$OnBoardinglabelEnterDescriptionTitleTextBox,$OnBoardinglabelEnterManagerUserNameTitle,$OnBoardinglabelEnterManagerUserNameTextBox,$OnBoardinglabelEnterTelephoneNumberTitle,$OnBoardinglabelEnterTelephoneNumberTitleTextBox,$OnBoardinglabelEnterMobilephoneNumberTitle,$OnBoardinglabelEnterMobilephoneNumberTitleTextBox,$OnBoardinglabelEnterUserNameValidate)) 
+
+    $OnBoardinglabelEnterUserNameValidate.Add_MouseHover({ $MainForm.Cursor="Hand" })
+    $OnBoardinglabelEnterUserNameValidate.Add_MouseLeave({ $MainForm.Cursor="Default" })
+    $OnBoardinglabelEnterUserNameValidate.Add_Click({ OnBoarding-UserNameValidate })
 }
+
+Function OnBoarding-UserNameValidate{
+    $OnBoardinglabelEnterUserNameValidate.ForeColor  = "#646da9";$OnBoardinglabelEnterUserNameValidate.text  = "Checking.." 
+}
+
 
 Function CleanAndBuild-AssetActionSubMenu{
     $DeleteMACFromJAMFButton.Dispose()
