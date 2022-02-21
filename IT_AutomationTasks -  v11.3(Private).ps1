@@ -1,14 +1,59 @@
-﻿$FormStartingPoint = "Introduction"
+ Function Run-GUI{
+<#
+.Synopsis
+  Gui for Powershll
+.Description
+	Run-Gui App is an example to powershell GUI script
+.Example
+	C:\PS>Run-GUI 
+
+    Run this command will use default param an	
+.Example
+	C:\PS>Run-GUI -WelcomeText 'welcome' -LeftSideMenuTitle 'My Tool' -MainFormIntroductionExplainTextBody 'Body' -ClientSize '768,600'
+    
+    Run this command and specify your param
+
+.Notes
+	Name: MyGUITool
+	Author: Raanan Peretz
+	Last Edit: 10.2.2018	
+.Link
+https://il.linkedin.com/in/raanan-peretz-a9378352
+.Inputs
+	None
+.Outputs
+	None
+#Requires - Active Directory modual 
+#>
+param(
+[Parameter(Mandatory=$false)]
+[string]$WelcomeText = "Hey  $($env:USERNAME) And Welcome to My IT Automation Tool",
+[Parameter(Mandatory=$false)]
+[string]$LeftSideMenuTitle = "Menu Title",
+[Parameter(Mandatory=$false)]
+[string]$MainFormIntroductionExplainTextBody = "My IT Automation Task`n`nThis software allows you to perform multiple operations against different systems`n in one place.",
+[Parameter(Mandatory=$false)]
+[string]$ClientSize = "700,400"
+
+)
+
+Function Load-WindowsForms{
+try{
 [void] [System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms')
 [void] [System.Reflection.Assembly]::LoadWithPartialName('System.Drawing')
-
-
-Add-Type -AssemblyName System.Windows.Forms
+Add-Type -AssemblyName System.Windows.Forms -ErrorAction Stop
 [System.Windows.Forms.Application]::EnableVisualStyles()
+}catch{
+    write-host $PSItem.Exception.Message; 
+    return 1
+}
+return 0
+}
 
+Function Run-App{
 $MainForm                             = New-Object system.Windows.Forms.Form
-$MainForm.ClientSize                  = '700,400'
-$MainForm.text                        = "Hey  $($env:USERNAME) And Welcome to My IT Automation Tasks"
+$MainForm.ClientSize                  = $ClientSize
+$MainForm.text                        = $WelcomeText
 $MainForm.TopMost                     = $false
 $MainForm.BackColor                   = "#f2efef"
 $MainForm.AutoScale                   = $false
@@ -21,7 +66,7 @@ $MainForm.BringToFront()
 
 $MainFormLabelIntroduction
 $MainFormLabelIntroduction            = New-Object system.Windows.Forms.Label
-$MainFormLabelIntroduction.text       = "Introduction"
+$MainFormLabelIntroduction.text       = $LeftSideMenuTitle
 $MainFormLabelIntroduction.AutoSize   = $true
 $MainFormLabelIntroduction.width      = 25
 $MainFormLabelIntroduction.height     = 10
@@ -65,20 +110,7 @@ $MainFormPanel1.BackColor             = "#f0f4f4"
 
 $MainFormIntroductionExplain
 $MainFormIntroductionExplain          = New-Object system.Windows.Forms.Label
-$MainFormIntroductionExplainText      = "My IT Automation Task
-`n`nThis software allows you to perform multiple operations against different systems 
-from one place.
-
-User actions let you perform :
- * offboardin process 
- * Onboarding a new user (Partner\Contractor\Service Account)
-
-Asset action Lets you delete a station from : 
- * Sccm
- * JAMF
- * Active Directory 
-`n`n`n`nWarning : 
-Some of the actions are irreversible And must be performed with extreme caution!."
+$MainFormIntroductionExplainText      = $MainFormIntroductionExplainTextBody
 $MainFormIntroductionExplain.text     = $MainFormIntroductionExplainText 
 $MainFormIntroductionExplain.AutoSize = $true
 $MainFormIntroductionExplain.width    = 25
@@ -656,10 +688,16 @@ $MainFormcloseButton.Add_Click({$MainForm.Close()})
 
 [void]$MainForm.ShowDialog()
 
-remove-Variable -Name DeleteComputer*
-remove-Variable -Name MainForm*
-remove-Variable -Name Offboarding*
-remove-Variable -Name OnBoarding*
+remove-Variable -Name DeleteComputer* -ErrorAction SilentlyContinue
+remove-Variable -Name MainForm* -ErrorAction SilentlyContinue
+remove-Variable -Name Offboarding* -ErrorAction SilentlyContinue
+remove-Variable -Name OnBoarding* -ErrorAction SilentlyContinue
 
 #Are you sure you want to delete Install macOS Sierra.dmg?
 #This action is permanent and cannot be undone.
+}
+$CheckModual = Load-WindowsForms
+If ($CheckModual -eq 0){Run-App}
+
+}
+  
